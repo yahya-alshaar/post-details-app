@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="18G87" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Image" representedClassName="Image" parentEntity="Media" syncable="YES"/>
+    <entity name="Media" representedClassName="Media" isAbstract="YES" syncable="YES">
+        <attribute name="coverUrl" optional="YES" attributeType="URI"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isCover" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <relationship name="post" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Post" inverseName="medias" inverseEntity="Post"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Member" representedClassName="Member" syncable="YES">
+        <attribute name="avatarUrl" optional="YES" attributeType="URI"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="posts" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Post" inverseName="member" inverseEntity="Post"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Post" representedClassName="Post" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="details" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="medias" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Media" inverseName="post" inverseEntity="Media"/>
+        <relationship name="member" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Member" inverseName="posts" inverseEntity="Member"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Video" representedClassName="Video" parentEntity="Media" syncable="YES">
+        <attribute name="length" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="Image" positionX="324" positionY="252" width="128" height="43"/>
+        <element name="Media" positionX="270" positionY="207" width="128" height="118"/>
+        <element name="Member" positionX="306" positionY="234" width="128" height="103"/>
+        <element name="Post" positionX="261" positionY="198" width="128" height="118"/>
+        <element name="Video" positionX="288" positionY="216" width="128" height="58"/>
+    </elements>
+</model>
